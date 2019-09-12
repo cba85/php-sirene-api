@@ -5,7 +5,7 @@ namespace Sirene;
 use Sirene\Traits\Builder;
 
 /**
- * Sirene Version 1 API
+ * Sirene Version 2 API
  */
 class Sirene
 {
@@ -26,31 +26,7 @@ class Sirene
      */
     public function __construct()
     {
-        $this->version = "v1";
-    }
-
-    /**
-     * Full text search
-     * @param  string         $search
-     * @param  array          $options
-     * @param  bool|boolean   $json
-     * @return string|object
-     */
-    public function fullText(string $search, array $options = [], bool $json = true)
-    {
-        return $this->request($this->version, 'full_text', null, $search, $options, $json);
-    }
-
-    /**
-     * SIRET search
-     * @param  string       $search
-     * @param  array        $options
-     * @param  bool|boolean $json
-     * @return string|object
-     */
-    public function siret(string $search, array $options = [], bool $json = true)
-    {
-        return $this->request($this->version, 'siret', null, $search, $options, $json);
+        $this->version = "v2";
     }
 
     /**
@@ -66,66 +42,29 @@ class Sirene
     }
 
     /**
-     * RNA search
-     * @param  string       $search
-     * @param  array        $options
-     * @param  bool|boolean $json
-     * @return string|object
-     */
-    public function rna(string $search, array $options = [], bool $json = true)
-    {
-        return $this->request($this->version, 'rna', null, $search, $options, $json);
-    }
-
-    /**
-     * Suggest
+     * Etablissements
      *
      * @param string $search
      * @param array $options
      * @param boolean $json
      * @return void
      */
-    public function suggest(string $search, array $options = [], bool $json = true)
+    public function etablissements(string $search, array $options = [], bool $json = true)
     {
-        return $this->request($this->version, 'suggest', null, $search, $options, $json);
+        return $this->request($this->version, 'siren', 'etablissements', $search, $options, $json);
     }
 
     /**
-     * Near point
-     *
-     * @param array $options
-     * @param boolean $json
-     * @return void
-     */
-    public function nearPoint(array $options = [], bool $json = true)
-    {
-        return $this->request($this->version, 'near_point', null, $search = null, $options, $json);
-    }
-
-    /**
-     * Near etablissement
+     * Etablissements GeoJson
      *
      * @param string $search
      * @param array $options
      * @param boolean $json
      * @return void
      */
-    public function nearEtablissement(string $search, array $options = [], bool $json = true)
+    public function etablissementsGeojson(string $search, array $options = [], bool $json = true)
     {
-        return $this->request($this->version, 'near_etablissement', null, $search, $options, $json);
-    }
-
-    /**
-     * Near etablissement GeoJson
-     *
-     * @param string $search
-     * @param array $options
-     * @param boolean $json
-     * @return void
-     */
-    public function nearEtablissementGeojson(string $search, array $options = [], bool $json = true)
-    {
-        return $this->request($this->version, 'near_etablissement_geojson', null, $search, $options, $json);
+        return $this->request($this->version, 'siren', 'etablissements_geojson', $search, $options, $json);
     }
 
 }

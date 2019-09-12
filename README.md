@@ -1,8 +1,6 @@
 # PHP SIRENE API
 
-PHP package to use version 1 of SIRENE API.
-
-https://entreprise.data.gouv.fr/api_doc_sirene
+PHP package to use version 2 of SIRENE API.
 
 ## Install
 
@@ -19,28 +17,16 @@ $ composer require cba85/php-sirene-api
 require dirname(__DIR__) .  "/vendor/autoload.php";
 
 // SIRENE class
-$sirene = new Sirene\Version1;
+$sirene = new Sirene\Sirene;
 
-// Version 1 - Fulltext
-$results = $sirene->fullText("montpellier", []);
-
-// Version 1 - Siret
-$results = $sirene->siret("21310555400017", []);
-
-// Version 1 - Siren
+// Version 2 - Siren
 $results = $sirene->siren("213105554", []);
 
-// Version 1 - Rna
-$results = $sirene->rna("W9C1000188", []);
+// Version 2 - Etablissements
+$results = $sirene->etablissements("213105554", []);
 
-// Version 1 - Near Point
-$results = $sirene->nearPoint(['lat' => "43.6", 'long' => "3.884865"]);
-
-// Version 1 - Near Etablissement
-$results = $sirene->nearEtablissement("21340172201787");
-
-// Version 1 - Near Etablissement Geo Json
-$results = $sirene->nearEtablissementGeojson("21340172201787");
+// Version 2 - Etablissements Geo Json
+$results = $sirene->etablissementsGeojson("213105554", []);
 ```
 
 ## Tests
