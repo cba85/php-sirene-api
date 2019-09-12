@@ -19,7 +19,7 @@ $ composer require cba85/php-sirene-api
 require dirname(__DIR__) .  "/vendor/autoload.php";
 
 // SIRENE class
-$sirene = new Sirene\Version1;
+$sirene = new Sirene\Sirene;
 
 // Version 1 - Fulltext
 $results = $sirene->fullText("montpellier", []);
