@@ -5,7 +5,7 @@ namespace Sirene;
 use Sirene\Traits\Builder;
 
 /**
- * Sirene Version 2 API
+ * Sirene Version 3 API
  */
 class Sirene
 {
@@ -22,49 +22,53 @@ class Sirene
     protected $version;
 
     /**
+     * Api token
+     *
+     * @var string
+     */
+    private $token;
+
+    /**
      * Constructor
      */
-    public function __construct()
+    public function __construct($token)
     {
-        $this->version = "v2";
+        $this->token = $token;
+        $this->version = "V3";
     }
 
     /**
      * SIREN search
-     * @param  string       $search
+     * @param  array        $string
      * @param  array        $options
      * @param  bool|boolean $json
      * @return string|object
      */
-    public function siren(string $search, array $options = [], bool $json = true)
+    public function siren($search = null, array $options = [], bool $json = true)
     {
-        return $this->request($this->version, 'siren', null, $search, $options, $json);
+        return $this->request('siren', null, $search, $options, $json);
     }
 
     /**
-     * Etablissements
-     *
-     * @param string $search
-     * @param array $options
-     * @param boolean $json
-     * @return void
+     * SIRET search
+     * @param  array        $string
+     * @param  array        $options
+     * @param  bool|boolean $json
+     * @return string|object
      */
-    public function etablissements(string $search, array $options = [], bool $json = true)
+    public function siret($search = null, array $options = [], bool $json = true)
     {
-        return $this->request($this->version, 'siren', 'etablissements', $search, $options, $json);
+        return $this->request('siret', null, $search, $options, $json);
     }
 
     /**
-     * Etablissements GeoJson
-     *
-     * @param string $search
-     * @param array $options
-     * @param boolean $json
-     * @return void
+     * API information
+     * @param  bool|boolean $json
+     * @return string|object
      */
-    public function etablissementsGeojson(string $search, array $options = [], bool $json = true)
+    public function informations(bool $json = true)
     {
-        return $this->request($this->version, 'siren', 'etablissements_geojson', $search, $options, $json);
+        return $this->request('informations', null, null, [], $json);
     }
 
 }

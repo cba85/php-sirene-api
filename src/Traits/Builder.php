@@ -1,15 +1,41 @@
 <?php
-
 namespace Sirene\Traits;
 
+use GuzzleHttp\Client;
+
+/**
+ * Builder trait
+ */
 trait Builder
 {
-    private $url = "https://entreprise.data.gouv.fr/api/sirene";
+    /**
+     * API base url
+     *
+     * @var string
+     */
+    private $url = "https://api.insee.fr/entreprises/sirene";
 
+    /**
+     * Search parameter
+     *
+     * @var string
+     */
     private $search;
 
+    /**
+     * Options
+     *
+     * @var array
+     */
     private $options;
 
+    /**
+     * Generate url query
+     *
+     * @param string $search
+     * @param array $options
+     * @return void
+     */
     protected function url($search, array $options): void
     {
         if ($search) {
@@ -21,21 +47,38 @@ trait Builder
         $this->options = http_build_query($options);
     }
 
-    public function curl($encodedUrl): string
+    /**
+     * Make API request using Guzzle library
+     *
+     * @param string $encodedUrl
+     * @return string
+     */
+    public function curl(string $encodedUrl): string
     {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $encodedUrl);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        $response = curl_exec($ch);
-        curl_close($ch);
-        return $response;
+        $client = new Client;
+        $headers = [
+            'Authorization' => 'Bearer ' . $this->token,
+            'Accept' => 'application/json',
+        ];
+        $response = $client->request('GET', $encodedUrl, ['headers' => $headers]);
+        return $response->getBody()->getContents();
     }
 
-    public function request($version, $type, $subtype, $search, $options, $json)
+    /**
+     * Generate response
+     *
+     * @param string $type
+     * @param void|string $subtype
+     * @param void|string $search
+     * @param array $options
+     * @param boolean $json
+     * @return string
+     */
+    public function request(string $type, $subtype, $search, array $options, bool $json) : string
     {
         $this->url($search, $options);
 
-        $encodedUrl = "{$this->url}/{$version}/{$type}/{$this->search}";
+        $encodedUrl = "{$this->url}/{$this->version}/{$type}/{$this->search}";
         if ($subtype) {
             $encodedUrl .= "/{$subtype}";
         }
