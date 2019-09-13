@@ -1,7 +1,7 @@
 {
     "name": "cba85/php-sirene-api",
     "type": "library",
-    "description": "PHP package to use SIRENE API",
+    "description": "PHP package for SIRENE API",
     "keywords": [
         "php",
         "sirene"
