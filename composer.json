@@ -1,4 +1,21 @@
 {
+    "name": "cba85/php-sirene-api",
+    "type": "library",
+    "description": "PHP package to use SIRENE API",
+    "keywords": [
+        "php",
+        "sirene"
+    ],
+    "homepage": "http://github.com/cba85/php-sirene-api",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Clément Barbaza",
+            "email": "hello@clementbarbaza.com",
+            "homepage": "https://www.clementbarbaza.com/",
+            "role": "Developer"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Sirene\\": "src"
