@@ -26,7 +26,7 @@ $ composer require cba85/php-sirene-api
 require dirname(__DIR__) .  "/vendor/autoload.php";
 
 // SIRENE class
-$sirene = new \Sirene\Sirene;
+$sirene = new \Sirene\Sirene("YOUR_AUTH_TOKEN");
 
 // Version 3 - SIREN
 $results = $sirene->siren(null, ['nombre' => 5]);

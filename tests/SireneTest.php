@@ -4,7 +4,7 @@ use PHPUnit\Framework\TestCase;
 use Sirene\Sirene;
 
 final class SireneTest extends TestCase {
-    protected $token = "YOUR_TOKEN";
+    protected $token = "YOUR_AUTH_TOKEN";
 
     public function testInformations()
     {
